@@ -1,0 +1,77 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "a669e462-b166-4ac4-9686-76fcf5a6d7c3": {
+        "id": "a669e462-b166-4ac4-9686-76fcf5a6d7c3",
+        "parent": null,
+        "name": "MyApixProject",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "189668ef-6255-4239-8cb7-802c4dd4b9ac"
+        ],
+        "isRemovable": false,
+        "filePath": "MyApixProject"
+      },
+      "189668ef-6255-4239-8cb7-802c4dd4b9ac": {
+        "id": "189668ef-6255-4239-8cb7-802c4dd4b9ac",
+        "parent": "a669e462-b166-4ac4-9686-76fcf5a6d7c3",
+        "name": "lambda.js",
+        "type": "LAMBDA_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "MyApixProject/lambda.js",
+        "code": "\nlet Swagger = require('swagger-client');\n\nexports.handler = function (event, context, callback) {\n\n    Swagger.http({\n        url: 'https://services.apixplatform.com/api-sandbox/application/token',\n        method: 'post',\n        query: {},\n        headers: { \"Accept\": \"*/*\", \"Content-Type\": \"application/json\" },\n        body: JSON.stringify({\n            \"userName\": \"Your email address\",\n            \"password\": \"Your password\"\n        })\n    }).then((response) => {\n        var access_token = \"bearer \" + response.body.access_token;\n        // Insert new API calls here to call with APIX Access Token\n\n\n        callback(null, access_token);\n    }).catch((err) => {\n        console.log(err);\n        callback(\"Execution failed\");\n    });\n\n}",
+        "triggers": [],
+        "config": {
+          "runtime": "nodejs8.10",
+          "timeout": 60,
+          "memory": 128
+        }
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "a669e462-b166-4ac4-9686-76fcf5a6d7c3",
+    "openFiles": [
+      "189668ef-6255-4239-8cb7-802c4dd4b9ac"
+    ],
+    "currentFileId": "189668ef-6255-4239-8cb7-802c4dd4b9ac",
+    "resources": {},
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "swagger-client": {
+          "name": "swagger-client",
+          "version": "3.8.21"
+        }
+      }
+    },
+    "lambdaId": "189668ef-6255-4239-8cb7-802c4dd4b9ac"
+  },
+  "PROJECT_META": {
+    "projectName": "MyApixProject",
+    "projectDescription": "dwdw",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1547999380521
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "MyApixProject",
+      "url": "https://github.com/sigmaidetest/MyApixProject"
+    }
+  }
+}
